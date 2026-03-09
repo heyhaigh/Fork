@@ -65,6 +65,28 @@
     z-index: -1;
   }
 
+  /* Vignette overlay to hide watermarks and focus attention */
+  .scene-bg::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,15,0.7) 65%, rgba(10,10,15,1) 90%);
+    z-index: 1;
+  }
+
+  /* Film grain noise overlay */
+  .scene-bg::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    z-index: 2;
+    pointer-events: none;
+  }
+
   .scene-content {
     max-width: 680px;
     padding: 40px;
